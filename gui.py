@@ -5,8 +5,8 @@ import threading
 import time
 
 # URL da API hospedada no Vercel
-API_URL_UPLOAD = "https://seu-projeto.vercel.app/upload"
-API_URL_PROCESS = "https://seu-projeto.vercel.app/process"
+API_URL_UPLOAD = "https://cortes-ia.vercel.app/upload"
+API_URL_PROCESS = "https://cortes-ia.vercel.app/process"
 
 class VideoProcessorApp:
     def __init__(self, root):
