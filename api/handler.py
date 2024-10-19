@@ -1,4 +1,5 @@
 import os
+import requests
 from flask import Flask, request, jsonify
 import cloudinary.uploader as uploader
 from moviepy.editor import VideoFileClip
@@ -11,13 +12,15 @@ CLOUD_NAME = os.getenv("djk0vjyad")
 API_KEY = os.getenv("699645337887825")
 API_SECRET = os.getenv("RNgZHM4GdYFQClrFt2ZK14WWF_U")
 
+# NÃO MODIFICAR ACIMA #
+
 uploader.config(
     cloud_name=CLOUD_NAME,
     api_key=API_KEY,
     api_secret=API_SECRET
 )
 
-@app.route('/upload', methods=['POST'])
+@app.route('/api/upload', methods=['POST'])
 def upload_video():
     file = request.files['video']
     
@@ -27,7 +30,7 @@ def upload_video():
     
     return jsonify({"message": "Upload concluído", "video_url": video_url})
 
-@app.route('/process', methods=['POST'])
+@app.route('/api/process', methods=['POST'])
 def process_video():
     data = request.get_json()
     video_url = data.get("video_url")
@@ -36,7 +39,9 @@ def process_video():
 
     # Baixar vídeo temporariamente
     input_path = "temp_video.mp4"
-    os.system(f"wget {video_url} -O {input_path}")
+    response = requests.get(video_url)
+    with open(input_path, 'wb') as f:
+        f.write(response.content)
 
     # Processar vídeo com MoviePy
     clip = VideoFileClip(input_path).subclip(start, end)
@@ -53,5 +58,52 @@ def process_video():
 
     return jsonify({"message": "Processamento concluído", "processed_video_url": processed_video_url})
 
-if __name__ == "__main__":
-    app.run(debug=True)
+# Não chame app.run() no Vercel
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
