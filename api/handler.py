@@ -7,9 +7,9 @@ from moviepy.editor import VideoFileClip
 app = Flask(__name__)
 
 # Configuração do Cloudinary
-CLOUD_NAME = os.getenv("CLOUD_NAME")
-API_KEY = os.getenv("API_KEY")
-API_SECRET = os.getenv("API_SECRET")
+CLOUD_NAME = os.getenv("djk0vjyad")
+API_KEY = os.getenv("699645337887825")
+API_SECRET = os.getenv("RNgZHM4GdYFQClrFt2ZK14WWF_U")
 
 uploader.config(
     cloud_name=CLOUD_NAME,
